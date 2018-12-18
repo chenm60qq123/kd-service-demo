@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -70,6 +71,22 @@ public class ServiceDemoApplicationTests {
             System.out.println(u.getName());
         }
     }
+
+    @Test
+    public void adds() {
+        List<UserEntity> list=new ArrayList<UserEntity>();
+        UserEntity userEntity=new UserEntity();
+        userEntity.setId("5");
+        userEntity.setName("che23");
+        UserEntity userEntity1=new UserEntity();
+        userEntity.setId("6");
+        userEntity.setName("che232");
+        list.add(userEntity);
+        list.add(userEntity1);
+        int i=userMapper.insertCollectList(list);
+        System.out.println("新增"+i+"条");
+    }
+
 
 }
 

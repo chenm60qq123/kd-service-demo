@@ -24,6 +24,14 @@ public interface UserMapper {
     @Update("UPDATE SYSDBA.USERS SET ID=#{id},NAME=#{name} WHERE ID =#{id}")
     int update(UserEntity user);
 
-
+    @Insert(
+            "<script>"+
+            "INSERT INTO SYSDBA.USERS (ID,NAME) VALUES "+
+            "<foreach collection='testLists' item='item' index='index' separator=','>"+
+            "(#{item.id}, #{item.name})"+
+            "</foreach>"+
+            "</script>"
+    )
+    int insertCollectList(@Param(value="testLists") List<UserEntity> testLists);
 
 }
