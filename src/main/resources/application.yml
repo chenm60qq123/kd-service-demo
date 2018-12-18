@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    driver-class-name: dm.jdbc.driver.DmDriver
+    url: jdbc:dm://192.168.0.99/PSIDP
+    username: SYSDBA
+    password: SYSDBA
+    type: com.alibaba.druid.pool.DruidDataSource
