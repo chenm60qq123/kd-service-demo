@@ -4,8 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.kd.servicedemo.entity.PageBean;
 import com.kd.servicedemo.entity.UserEntity;
 import com.kd.servicedemo.mapper.UserMapper;
-import com.kd.servicedemo.service.UserInterface;
+import com.kd.servicedemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -21,7 +22,8 @@ import java.util.List;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public class UserServiceImpl implements UserInterface {
+@Service
+public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
