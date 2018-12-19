@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import tk.mybatis.spring.annotation.MapperScan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +63,7 @@ public class ServiceDemoApplicationTests {
     @Test
     public void findByPage() {
         PageHelper.startPage(1,2);
-        List<UserEntity> list=userMapper.findAll();
+        List<UserEntity> list=userMapper.selectAll();
         //int countNums = userMapper.countItem();总记录数
         PageBean<UserEntity> pageData = new PageBean<>(1, 2, 4);
         pageData.setItems(list);
@@ -76,15 +77,66 @@ public class ServiceDemoApplicationTests {
     public void adds() {
         List<UserEntity> list=new ArrayList<UserEntity>();
         UserEntity userEntity=new UserEntity();
-        userEntity.setId("5");
-        userEntity.setName("che23");
+        userEntity.setId("a");
+        userEntity.setName("che233");
         UserEntity userEntity1=new UserEntity();
-        userEntity.setId("6");
-        userEntity.setName("che232");
+        userEntity1.setId("b");
+        userEntity1.setName("che2322");
         list.add(userEntity);
         list.add(userEntity1);
         int i=userMapper.insertCollectList(list);
         System.out.println("新增"+i+"条");
+    }
+
+    @Test
+    public void selectAll() {
+        List<UserEntity> list=userMapper.selectAll();
+        for (UserEntity u:list) {
+            System.out.println(u.getName());
+        }
+    }
+
+    @Test
+    public void selectByPrimaryKey() {
+        UserEntity u=new UserEntity();
+        u.setId("0");
+        UserEntity us=userMapper.selectByPrimaryKey(u);
+        System.out.println(us.getName());
+
+    }
+
+    @Test
+    public void update() {
+        UserEntity userEntity=new UserEntity();
+        userEntity.setId("1");
+        userEntity.setName("che233");
+        int i=userMapper.update(userEntity);
+        System.out.println("修改数据："+i+"条");
+
+    }
+
+    @Test
+    public void deleteByIdM() {
+        int i=userMapper.deleteById("2");
+        System.out.println("删除："+i+"条");
+
+    }
+
+    @Test
+    public void addM() {
+        UserEntity userEntity=new UserEntity();
+        userEntity.setName("che233");
+        int i=userMapper.insert(userEntity);
+        System.out.println("增加："+i+"条");
+
+    }
+
+    @Test
+    public void count() {
+        UserEntity userEntity=new UserEntity();
+        int i=userMapper.selectCount(userEntity);
+        System.out.println("增加："+i+"条");
+
     }
 
 

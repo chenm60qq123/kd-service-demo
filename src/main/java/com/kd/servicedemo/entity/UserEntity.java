@@ -1,9 +1,20 @@
 package com.kd.servicedemo.entity;
 
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+import com.kd.servicedemo.utils.UUIdGenId;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.annotation.NameStyle;
+import tk.mybatis.mapper.code.Style;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
+@NameStyle(Style.uppercase)
+@Table(name = "SYSDBA.USERS")
 public class UserEntity {
+
+    @Id
+    @KeySql(genId = UUIdGenId.class)
     private String id;
     private String name;
 

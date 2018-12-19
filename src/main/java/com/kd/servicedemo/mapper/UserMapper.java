@@ -2,11 +2,12 @@ package com.kd.servicedemo.mapper;
 
 import com.kd.servicedemo.entity.UserEntity;
 import org.apache.ibatis.annotations.*;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface UserMapper {
+
+public interface UserMapper extends Mapper<UserEntity> {
 
     @Select("SELECT * FROM SYSDBA.USERS")
     List<UserEntity> findAll();
@@ -28,7 +29,7 @@ public interface UserMapper {
             "<script>"+
             "INSERT INTO SYSDBA.USERS (ID,NAME) VALUES "+
             "<foreach collection='testLists' item='item' index='index' separator=','>"+
-            "(#{item.id}, #{item.name})"+
+            "(#{item.id,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR})"+
             "</foreach>"+
             "</script>"
     )
