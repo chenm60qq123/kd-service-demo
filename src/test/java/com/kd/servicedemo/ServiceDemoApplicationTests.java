@@ -1,6 +1,7 @@
 package com.kd.servicedemo;
 
 import com.github.pagehelper.PageHelper;
+import com.kd.servicedemo.build.MainController;
 import com.kd.servicedemo.entity.PageBean;
 import com.kd.servicedemo.entity.UserEntity;
 import com.kd.servicedemo.mapper.UserMapper;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.spring.annotation.MapperScan;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,14 @@ import java.util.List;
 public class ServiceDemoApplicationTests {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    MainController mainController;
+
+
+    @Test
+    public  void doBuild() throws SQLException, ClassNotFoundException {
+        mainController.doBuild();
+    }
 
     @Test
     public void findAll() {
