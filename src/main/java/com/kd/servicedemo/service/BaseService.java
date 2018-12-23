@@ -1,5 +1,6 @@
 package com.kd.servicedemo.service;
 
+import com.kd.servicedemo.entity.DataBaseEntity;
 import com.kd.servicedemo.entity.PageBean;
 
 import java.io.Serializable;
@@ -36,7 +37,7 @@ public interface BaseService<T,PK extends Serializable> {
      * @Return int
      * @Date 2018/12/19 17:11
      */
-    public int deleteById(String id);
+    public int delete(T t);
 
     /**
      * @Method selectAll
@@ -79,8 +80,8 @@ public interface BaseService<T,PK extends Serializable> {
      * @Exception
      * @Date 2018/12/19 17:22
      */
-    public PageBean<T> selectByPage(T t,int pageNum, int pageSize);
+    public PageBean<T> selectByPage(int pageNum, int pageSize);
 
 
-
+    int deleteIn(List<T> list);
 }

@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int deleteById(String id) {
-        return userMapper.deleteById(id);
+    public int delete(UserEntity userEntity) {
+        return userMapper.delete(userEntity);
     }
 
     @Override
@@ -53,10 +53,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<UserEntity> selectByPage(UserEntity userEntity,int pageNum, int pageSize) {
+    public PageBean<UserEntity> selectByPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        userMapper.selectAll();
-        PageBean<UserEntity> pageData = new PageBean<>(pageNum, pageSize, userMapper.selectCount(userEntity));
+        PageBean<UserEntity> pageData = new PageBean<>(pageNum, pageSize, userMapper.selectCount(new UserEntity()));
         return pageData;
+    }
+
+    @Override
+    public int deleteIn(List<UserEntity> list) {
+        return 0;
     }
 }
