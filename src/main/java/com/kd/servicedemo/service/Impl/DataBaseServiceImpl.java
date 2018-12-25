@@ -61,7 +61,7 @@ public class DataBaseServiceImpl implements DataBaseService {
         }
         Example example = new Example(DataBaseEntity.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andIn("id",list);
+        criteria.andIn("id",ids);
         return dataBaseMapper.deleteByExample(example);
     }
 }
