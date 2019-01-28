@@ -1,7 +1,6 @@
-package com.kd.servicedemo.mapper;
+package com.kd.servicedemo.dao.mapper;
 
 import com.kd.servicedemo.entity.TemplateEntity;
-import com.kd.servicedemo.entity.TemplateListEntity;
 import tk.mybatis.mapper.common.Mapper;
 
 

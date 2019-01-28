@@ -1,9 +1,7 @@
 package com.kd.servicedemo.controller;
 
-import com.kd.servicedemo.entity.TemplateEntity;
-import com.kd.servicedemo.entity.Message;
-import com.kd.servicedemo.entity.PageBean;
-import com.kd.servicedemo.entity.TemplateListEntity;
+import com.kd.servicedemo.entity.*;
+import com.kd.servicedemo.service.TemplateFileService;
 import com.kd.servicedemo.service.TemplateListService;
 import com.kd.servicedemo.service.TemplateService;
 import freemarker.template.Template;
@@ -22,6 +20,9 @@ public class TemplateController {
     TemplateService templateService;
     @Autowired
     TemplateListService templateListService;
+    @Autowired
+    TemplateFileService templateFileService;
+
     @RequestMapping("getAll")
     @ResponseBody
     public Message getAll(){
@@ -70,7 +71,7 @@ public class TemplateController {
     @ResponseBody
     public Message deleteIn(@RequestBody List<TemplateEntity> list){
         try {
-            int num=templateService.deleteIn(list);
+            int num=templateService.deleteAll(list);
             return Message.success("200","删除成功",num);
         }catch (Exception e){
             e.printStackTrace();
@@ -85,11 +86,66 @@ public class TemplateController {
         return Message.success(page);
     }
 
+    @RequestMapping("treeAdd")
+    @ResponseBody
+    public Message treeAdd(TemplateListEntity templateListEntity)  {
+        try {
+            int num =templateListService.add(templateListEntity);
+            return Message.success("200","新增成功",num);
+        }catch (Exception e){
+            return  Message.fails("500","新增失败",e.getMessage());
+        }
+
+    }
+
     @RequestMapping("treeInit")
     @ResponseBody
-    public Message selectByPage(String templateId){
+    public Message selectByPage(String templateId) throws Exception {
         List<TemplateListEntity> list=templateListService.selectById(templateId);
         Message m= Message.success(list);
         return  m;
+    }
+
+    @RequestMapping("treeUpdate")
+    @ResponseBody
+    public Message treeUpdate(TemplateListEntity templateListEntity){
+        try {
+            int num=templateListService.update(templateListEntity);
+            return  Message.success("200","修改成功",num);
+        }catch (Exception e){
+            e.printStackTrace();
+            return  Message.success("500","修改失败",e);
+        }
+
+    }
+
+    @RequestMapping("treeDel")
+    @ResponseBody
+    public Message treeDel( TemplateListEntity templateListEntity){
+        try {
+            int num=templateListService.delete(templateListEntity);
+            return Message.success("200","删除成功",num);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Message.fails("500","删除失败",e);
+        }
+    }
+
+    @RequestMapping("getFileByListId")
+    @ResponseBody
+    public Message getFileByListId(String listId){
+        TemplateFileEntity t=templateFileService.getFileByListId(listId);
+        return Message.success(t);
+    }
+
+    @RequestMapping("updateFile")
+    @ResponseBody
+    public Message updateFile(TemplateFileEntity templateFileEntity){
+        try {
+            int num=templateFileService.update(templateFileEntity);
+            return Message.success("200","文件修改成功！",num);
+        }catch (Exception e){
+            return Message.fails("500","文件修改失败！",e);
+        }
     }
 }

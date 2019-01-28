@@ -1,4 +1,4 @@
-package com.kd.servicedemo.mapper;
+package com.kd.servicedemo.dao.mapper;
 
 import com.kd.servicedemo.entity.UserEntity;
 import org.apache.ibatis.annotations.*;

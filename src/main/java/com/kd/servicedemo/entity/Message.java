@@ -38,6 +38,16 @@ public class Message {
 
 
 
+    /**
+     * @Method
+     * @Author Mr.c
+     * @Version  1.0
+     * @Description 修改或者新增成功返回消息
+     * @param state 状态
+     * @Return
+     * @Exception
+     * @Date 2019/1/22 16:33
+     */
     public static Message success(String state,String message,int num){
         return new Message(state,message,num,null);
     }

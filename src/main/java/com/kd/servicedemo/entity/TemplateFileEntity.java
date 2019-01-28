@@ -9,34 +9,27 @@ import tk.mybatis.mapper.code.Style;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NegativeOrZero;
-import java.util.List;
 
 /**
  * @ProjectName: kd-service-demo
  * @Package: com.kd.servicedemo.entity
- * @ClassName: TemplateListEntity
+ * @ClassName: TemplateFileEntity
  * @Description: java类作用描述
  * @Author: Mr.c
- * @CreateDate: 2019/1/21 17:56
+ * @CreateDate: 2019/1/22 14:15
  * @UpdateUser: 更新者
- * @UpdateDate: 2019/1/21 17:56
+ * @UpdateDate: 2019/1/22 14:15
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
 @Data
-@Table(name = "MYBATIS.TEMPLATE_LIST")
 @NoArgsConstructor
+@Table(name = "MYBATIS.TEMPLATE_FILE")
 @NameStyle(Style.uppercase)
-public class TemplateListEntity {
+public class TemplateFileEntity {
+
     @Id
-    @KeySql(genId = UUIdGenId.class)
-    private String list_id;
-    private String list_fid;
-    private String list_name;
-    private String template_id;
-    private String list_type;
-    @Transient
-    private List<TemplateListEntity> children;
+    private String file_id;
+    private String file_name;
+    private String file_content;
 }

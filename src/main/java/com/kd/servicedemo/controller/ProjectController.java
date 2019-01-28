@@ -1,9 +1,10 @@
 package com.kd.servicedemo.controller;
 
-import com.kd.servicedemo.entity.DataBaseEntity;
+import com.kd.servicedemo.entity.ProjectEntity;
 import com.kd.servicedemo.entity.Message;
 import com.kd.servicedemo.entity.PageBean;
-import com.kd.servicedemo.service.DataBaseService;
+import com.kd.servicedemo.service.ProjectService;
+import com.kd.servicedemo.vo.ProjectVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,24 +14,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("database")
-public class DataBaseController {
+@RequestMapping("project")
+public class ProjectController {
     @Autowired
-    DataBaseService dataBaseService;
+    ProjectService projectService;
 
     @RequestMapping("getAll")
     @ResponseBody
     public Message getAll(){
-        List<DataBaseEntity> list=dataBaseService.selectAll();
+        List<ProjectEntity> list=projectService.selectAll();
         Message m= Message.success(list);
         return  m;
     }
 
     @ResponseBody
     @RequestMapping("update")
-    public Message update(@RequestBody DataBaseEntity dataBaseEntity){
+    public Message update(@RequestBody ProjectEntity projectEntity){
         try {
-            int num=dataBaseService.update(dataBaseEntity);
+            int num=projectService.update(projectEntity);
             return  Message.success("200","修改成功",num);
         }catch (Exception e){
             e.printStackTrace();
@@ -40,9 +41,9 @@ public class DataBaseController {
 
     @ResponseBody
     @RequestMapping("add")
-    public Message add(@RequestBody DataBaseEntity dataBaseEntity){
+    public Message add(@RequestBody ProjectEntity projectEntity){
         try {
-            int num=dataBaseService.add(dataBaseEntity);
+            int num=projectService.add(projectEntity);
             return Message.success("200","新增成功",num);
         }catch (Exception e){
             e.printStackTrace();
@@ -52,9 +53,9 @@ public class DataBaseController {
 
     @RequestMapping("delete")
     @ResponseBody
-    public Message delete(@RequestBody DataBaseEntity dataBaseEntity){
+    public Message delete(@RequestBody ProjectEntity projectEntity){
         try {
-            int num=dataBaseService.delete(dataBaseEntity);
+            int num=projectService.delete(projectEntity);
             return Message.success("200","删除成功",num);
         }catch (Exception e){
             e.printStackTrace();
@@ -64,9 +65,9 @@ public class DataBaseController {
 
     @RequestMapping("deleteIn")
     @ResponseBody
-    public Message deleteIn(@RequestBody List<DataBaseEntity> list){
+    public Message deleteIn(@RequestBody List<ProjectEntity> list){
         try {
-            int num=dataBaseService.deleteAll(list);
+            int num=projectService.deleteAll(list);
             return Message.success("200","删除成功",num);
         }catch (Exception e){
             e.printStackTrace();
@@ -74,10 +75,11 @@ public class DataBaseController {
         }
     }
 
+
     @RequestMapping("selectByPage")
     @ResponseBody
     public Message selectByPage(int pageSize,int pageNum){
-        PageBean<DataBaseEntity> page=dataBaseService.selectByPage(pageSize,pageNum);
+        PageBean<ProjectVo> page= projectService.selectByPageVo(pageSize,pageNum);
         return Message.success(page);
     }
 }

@@ -1,4 +1,4 @@
-package com.kd.servicedemo.mapper;
+package com.kd.servicedemo.dao.mapper;
 
 import org.apache.ibatis.mapping.MappedStatement;
 import tk.mybatis.mapper.mapperhelper.MapperHelper;

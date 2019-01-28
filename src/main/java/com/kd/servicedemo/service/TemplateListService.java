@@ -17,5 +17,5 @@ import java.util.List;
  * @Version: 1.0
  */
 public interface TemplateListService extends  BaseService<TemplateListEntity,String>{
-    public List<TemplateListEntity> selectById(String templateId);
+    public List<TemplateListEntity> selectById(String templateId) throws Exception;
 }

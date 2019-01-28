@@ -17,7 +17,7 @@ public class MyBatisConfig {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage("com.kd.servicedemo.mapper");
+        mapperScannerConfigurer.setBasePackage("com.kd.servicedemo.dao.mapper");
 
         Properties properties = new Properties();
 //        properties.setProperty("mappers", CrudMapper.class.getName());

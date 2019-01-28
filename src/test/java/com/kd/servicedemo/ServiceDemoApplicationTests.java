@@ -4,14 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.kd.servicedemo.build.MainController;
 import com.kd.servicedemo.entity.PageBean;
 import com.kd.servicedemo.entity.UserEntity;
-import com.kd.servicedemo.mapper.UserMapper;
+import com.kd.servicedemo.dao.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import tk.mybatis.spring.annotation.MapperScan;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -77,7 +75,7 @@ public class ServiceDemoApplicationTests {
         PageHelper.startPage(1,2);
         List<UserEntity> list=userMapper.selectAll();
         //int countNums = userMapper.countItem();总记录数
-        PageBean<UserEntity> pageData = new PageBean<>(1, 2, 4);
+        PageBean<UserEntity> pageData = new PageBean<UserEntity>(list);
         pageData.setItems(list);
         List<UserEntity> listPage=pageData.getItems();
         for (UserEntity u:listPage) {

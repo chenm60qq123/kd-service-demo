@@ -1,9 +1,8 @@
 package com.kd.servicedemo.service;
 
-import com.kd.servicedemo.entity.DataBaseEntity;
-import com.kd.servicedemo.entity.UserEntity;
-
-import java.util.List;
+import com.kd.servicedemo.entity.PageBean;
+import com.kd.servicedemo.entity.ProjectEntity;
+import com.kd.servicedemo.vo.ProjectVo;
 
 /**
  * @ProjectName: kd-service-demo
@@ -17,7 +16,7 @@ import java.util.List;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
-public interface DataBaseService extends BaseService<DataBaseEntity,String> {
+public interface ProjectService extends BaseService<ProjectEntity,String> {
 
-
+    public PageBean<ProjectVo> selectByPageVo(int pageSize, int pageNum);
 }

@@ -11,3 +11,6 @@ logging:
 mapper:
   mappers: tk.mybatis.mapper.common.Mapper
   notEmpty: true
+server:
+  servlet:
+    context-path: /mybatis-generator-plug

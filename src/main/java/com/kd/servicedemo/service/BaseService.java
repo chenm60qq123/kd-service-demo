@@ -78,10 +78,12 @@ public interface BaseService<T,PK extends Serializable> {
      * @Description 分页查询
      * @Return PageBean<T>
      * @Exception
-     * @Date 2018/12/19 17:22
+     * @Date 2018/12/19 17:22c
      */
     public PageBean<T> selectByPage(int pageNum, int pageSize);
 
 
-    int deleteIn(List<T> list);
+    public int deleteIn(List<String> list,PK k,Class c);
+
+    public int deleteAll(List<T> list);
 }

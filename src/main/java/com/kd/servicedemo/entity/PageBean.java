@@ -3,6 +3,8 @@ package com.kd.servicedemo.entity;
  * 分页bean
  */
 
+import com.github.pagehelper.Page;
+
 import java.util.List;
 
 public class PageBean<T> {
@@ -18,6 +20,8 @@ public class PageBean<T> {
     private Integer totalPage;
     // 开始索引
     private Integer startIndex;
+    private int beginRows;
+    private int endRows;
     // 分页结果
     private List<T> items;
 
@@ -25,14 +29,24 @@ public class PageBean<T> {
         super();
     }
 
-    public PageBean(Integer currentPage, Integer pageSize, Integer totalNum) {
-        super();
-        this.currentPage = currentPage;
-        this.pageSize = pageSize;
-        this.totalNum = totalNum;
-        this.totalPage = (this.totalNum+this.pageSize-1)/this.pageSize;
-        this.startIndex = (this.currentPage-1)*this.pageSize;
-        this.isMore = this.currentPage >= this.totalPage?0:1;
+    public PageBean(List<T> list) {
+        this.items=list;
+//        this.currentPage = currentPage;
+//        this.pageSize = pageSize;
+//        this.totalNum = totalNum;
+//        this.totalPage = (this.totalNum+this.pageSize-1)/this.pageSize;
+//        this.startIndex = (this.currentPage-1)*this.pageSize;
+//        this.isMore = this.currentPage >= this.totalPage?0:1;
+        if (list instanceof Page) {
+            Page<T> p = (Page)list;
+            this.totalNum = (int)p.getTotal();
+            this.endRows = p.getEndRow();
+            this.currentPage = p.getPageNum();
+            this.pageSize = p.getPageSize();
+            this.totalPage = this.totalNum % this.pageSize == 0 ? this.totalNum / this.pageSize : this.totalNum / this.pageSize + 1;
+            this.startIndex = (this.currentPage-1)*this.pageSize;
+            this.isMore = this.currentPage >= this.totalPage?0:1;
+        }
     }
 
     public Integer getCurrentPage() {

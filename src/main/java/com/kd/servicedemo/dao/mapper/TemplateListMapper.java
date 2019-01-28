@@ -1,11 +1,11 @@
-package com.kd.servicedemo.mapper;
+package com.kd.servicedemo.dao.mapper;
 
 import com.kd.servicedemo.entity.TemplateListEntity;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
  * @ProjectName: kd-service-demo
- * @Package: com.kd.servicedemo.mapper
+ * @Package: com.kd.servicedemo.dao.mapper
  * @ClassName: TemplateListMapper
  * @Description: java类作用描述
  * @Author: Mr.c

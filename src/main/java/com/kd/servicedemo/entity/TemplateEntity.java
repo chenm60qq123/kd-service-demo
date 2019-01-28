@@ -20,15 +20,9 @@ public class TemplateEntity {
     @Id
     @KeySql(genId = UUIdGenId.class)
     private String id;
-    @Id
-    @KeySql(genId = UUIdGenId.class)
-    private String list_id;
     @NonNull
     private String template_name;
     @NonNull
     private String template_describe;
-
-
-
 
 }

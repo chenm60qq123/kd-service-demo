@@ -3,7 +3,7 @@ package com.kd.servicedemo.service.Impl;
 import com.github.pagehelper.PageHelper;
 import com.kd.servicedemo.entity.PageBean;
 import com.kd.servicedemo.entity.UserEntity;
-import com.kd.servicedemo.mapper.UserMapper;
+import com.kd.servicedemo.dao.mapper.UserMapper;
 import com.kd.servicedemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,44 +23,12 @@ import java.util.List;
  * @Version: 1.0
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<UserEntity> implements UserService {
     @Autowired
     UserMapper userMapper;
 
     @Override
-    public int add(UserEntity userEntity) {
-        return userMapper.insert(userEntity);
-    }
-
-    @Override
-    public int delete(UserEntity userEntity) {
-        return userMapper.delete(userEntity);
-    }
-
-    @Override
-    public List<UserEntity> selectAll() {
-        return userMapper.selectAll();
-    }
-
-    @Override
-    public UserEntity selectOne(UserEntity userEntity) {
-        return userMapper.selectOne(userEntity);
-    }
-
-    @Override
-    public int update(UserEntity userEntity) {
-        return userMapper.update(userEntity);
-    }
-
-    @Override
-    public PageBean<UserEntity> selectByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        PageBean<UserEntity> pageData = new PageBean<>(pageNum, pageSize, userMapper.selectCount(new UserEntity()));
-        return pageData;
-    }
-
-    @Override
-    public int deleteIn(List<UserEntity> list) {
+    public int deleteAll(List<UserEntity> list) {
         return 0;
     }
 }
